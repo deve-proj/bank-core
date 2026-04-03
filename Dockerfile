@@ -1,9 +1,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 WORKDIR /src
-COPY ["backend-core.csproj", "."]
-RUN dotnet restore "backend-core.csproj"
+COPY ["bank-core.csproj", "."]
+RUN dotnet restore "bank-core.csproj"
 COPY . .
-RUN dotnet publish "backend-core.csproj" \
+RUN dotnet publish "bank-core.csproj" \
     -c Release \
     -o /app/publish \
     -r linux-musl-x64 \
@@ -13,4 +13,4 @@ FROM mcr.microsoft.com/dotnet/runtime-deps:10.0-alpine AS final
 WORKDIR /app
 EXPOSE 80
 COPY --from=build /app/publish .
-ENTRYPOINT ["./backend-core"]
+ENTRYPOINT ["./bank-core"]
