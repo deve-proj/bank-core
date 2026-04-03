@@ -9,6 +9,7 @@ public class BankService : IBankService
 
     public async Task<bool> RegistNewBank(BankRegistryModel bankData)
     {
+        bankData.RegisteredAt = DateTime.UtcNow;
         return await _repo.RegistNewBank(bankData);
     }
 

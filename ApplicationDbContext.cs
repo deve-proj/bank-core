@@ -14,7 +14,7 @@ public class ApplicationDbContext : DbContext
     {
         modelBuilder.Entity<BankRegistryModel>(entity =>
         {
-            entity.ToTable("bankRegistry");
+            entity.ToTable("bank_registry");
             entity.HasKey(e => e.Id).HasName("id");
             
             entity.Property(e => e.Id).HasColumnName("id");
