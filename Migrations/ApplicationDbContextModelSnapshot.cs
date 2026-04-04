@@ -64,14 +64,65 @@ namespace bank_core.Migrations
                         .HasColumnType("text")
                         .HasColumnName("status");
 
-                    b.HasKey("Id")
-                        .HasName("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("BankName")
                         .IsUnique()
                         .HasDatabaseName("ix_bank_registry_bank_name");
 
                     b.ToTable("bank_registry", (string)null);
+                });
+
+            modelBuilder.Entity("MonetaryPolicyModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ChangedBy")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("changed_by");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("DecisionUrl")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("decision_url");
+
+                    b.Property<DateTime?>("DeprecatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("deprecated_at");
+
+                    b.Property<decimal>("Inflation")
+                        .HasColumnType("numeric")
+                        .HasColumnName("inflation");
+
+                    b.Property<bool>("IsCurrent")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_current");
+
+                    b.Property<decimal>("KeyRate")
+                        .HasColumnType("numeric")
+                        .HasColumnName("key_rate");
+
+                    b.Property<decimal>("ReserveRatio")
+                        .HasColumnType("numeric")
+                        .HasColumnName("reserve_ratio");
+
+                    b.Property<decimal>("TotalMoneySupply")
+                        .HasColumnType("numeric")
+                        .HasColumnName("total_money_supply");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("monetary_policy", (string)null);
                 });
 #pragma warning restore 612, 618
         }
